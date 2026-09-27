@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Foundry — where ideas get made</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="brand">
+        <svg class="brand-mark" width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M4 20 L14 4 L24 20 L19 20 L14 12 L9 20 Z" fill="var(--amber)"/>
+        </svg>
+        <span class="brand-name">Foundry</span>
+      </div>
+      <nav class="header-actions">
+        <span class="idea-count" id="ideaCount">— ideas forged</span>
+        <button class="btn btn-primary" id="openFormBtn">Submit an idea</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Raw ideas go in.<br>Something worth building comes out.</h1>
+        <p class="hero-sub">Foundry is where a team turns loose thoughts into a shortlist. Post an idea, the room votes, the best ones move to "Building."</p>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-number" id="topVotes">0</span>
+        <span class="stat-label">votes on the current top idea</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap board">
+    <div class="board-controls">
+      <div class="filter-chips" id="categoryChips">
+        <button class="chip is-active" data-category="">All</button>
+        <button class="chip" data-category="Product">Product</button>
+        <button class="chip" data-category="Tool">Tool</button>
+        <button class="chip" data-category="Service">Service</button>
+        <button class="chip" data-category="Community">Community</button>
+        <button class="chip" data-category="Research">Research</button>
+      </div>
+      <div class="sort-control">
+        <label for="sortSelect">Sort by</label>
+        <select id="sortSelect">
+          <option value="top">Most votes</option>
+          <option value="new">Newest</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="ideaGrid" class="idea-grid" aria-live="polite">
+      <!-- Idea cards injected here -->
+    </div>
+
+    <p id="emptyState" class="empty-state" hidden>
+      No ideas here yet. Be the first to submit one for this category.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Foundry — Node.js, Express &amp; MySQL, containerized for deployment.</p>
+    </div>
+  </footer>
+
+  <!-- Submit idea modal -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h2 id="modalTitle">Submit an idea</h2>
+        <button class="modal-close" id="closeFormBtn" aria-label="Close">&times;</button>
+      </div>
+      <form id="ideaForm">
+        <label for="titleInput">Title</label>
+        <input id="titleInput" name="title" type="text" maxlength="150" required placeholder="Name the idea in one line" />
+
+        <label for="descInput">Description</label>
+        <textarea id="descInput" name="description" rows="4" required placeholder="What problem does it solve, and for whom?"></textarea>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="categorySelect">Category</label>
+            <select id="categorySelect" name="category" required>
+              <option value="Product">Product</option>
+              <option value="Tool">Tool</option>
+              <option value="Service">Service</option>
+              <option value="Community">Community</option>
+              <option value="Research">Research</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="authorInput">Your name</label>
+            <input id="authorInput" name="author" type="text" maxlength="100" placeholder="Optional" />
+          </div>
+        </div>
+
+        <p class="form-error" id="formError" hidden></p>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="cancelFormBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit idea</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
